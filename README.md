@@ -2,6 +2,8 @@
 
 This script uses FFMPEG to convert all mp4-files in a directory for web use. Custom settings available.
 
+Poster-images are automatically generated for each converted video file.
+
 ## Installation:
 
 1. Clone repository

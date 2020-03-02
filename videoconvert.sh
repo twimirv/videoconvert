@@ -55,7 +55,8 @@ then
     obitrate="-crf 10 "
 elif [[ $bitrate -eq 3 ]]
 then
-    read -p "\033[7;39mCustom compression (0-51): " cbitrate
+    echo "\033[7;39m"
+    read -p "Custom compression (0-51): " cbitrate
     obitrate="-crf $cbitrate "
 fi
 
@@ -112,7 +113,7 @@ then
         for i in *.mp4
             do
                 ffmpeg -y -i $i -c:v libx264 $obitrate -vf format=yuv420p ${ospeed}ffmpeg/1080p/${i%.*}.mp4
-                ffmpeg -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
+                ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
         done
     fi
     if [ $resolution -eq 2 ] || [ $resolution -eq 3 ]
@@ -121,7 +122,7 @@ then
         for i in *.mp4
             do
                 ffmpeg -y -i $i -vf scale=-1:720 -c:v libx264 ${ospeed}ffmpeg/720p/${i%.*}.mp4
-                ffmpeg -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
+                ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
         done
     fi
 fi
