@@ -1,0 +1,7 @@
+FILE=/usr/local/bin/videoconvert.sh
+if test -f "$FILE"; then
+    echo "Removing old version of videoconvert..."
+    rm $FILE
+fi
+echo "Installing videoconvert..."
+cp videoconvert /usr/local/bin/videoconvert
