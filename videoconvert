@@ -5,7 +5,7 @@ echo -e ""
 echo -e "PLUS-DESK VIDEO CONVERTER 2020"
 echo -e "\033[3;90mPowered by: FFMPEG"
 echo -e "\033[0m"
-echo -e "This will convert all mp4, mov, avi and mxf-files in the folder for web use and generates posters for them."
+echo -e "This will convert all mp4, mov, avi, gif and mxf-files in the folder for web use and generates posters for them."
 echo -e ""
 echo -e "Current folder:\033[4;39m"
 pwd
@@ -70,7 +70,7 @@ fi
 
 echo -e "\033[0mConverting following files:"
 shopt -s nullglob
-for i in *.mp4 *.mov *.mxf *.avi
+for i in *.mp4 *.mov *.mxf *.avi *.gif
 do
     echo -e $i
 done
@@ -112,9 +112,9 @@ then
     then
         echo -e "1080p PIPE"
         shopt -s nullglob
-        for i in *.mp4 *.mov *.mxf *.avi
+        for i in *.mp4 *.mov *.mxf *.avi *.gif
             do
-                ffmpeg -y -i $i -c:v libx264 $obitrate -vf format=yuv420p ${ospeed}ffmpeg/1080p/${i%.*}.mp4
+                ffmpeg -y -i $i -vf scale=-1:1080 -c:v libx264 $obitrate -vf format=yuv420p ${ospeed}ffmpeg/1080p/${i%.*}.mp4
                 ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
         done
     fi
@@ -122,7 +122,7 @@ then
     then
         echo -e "720P PIPE"
         shopt -s nullglob
-        for i in *.mp4 *.mov *.mxf *.avi
+        for i in *.mp4 *.mov *.mxf *.avi *.gif
             do
                 ffmpeg -y -i $i -vf scale=-1:720 -c:v libx264 ${ospeed}ffmpeg/720p/${i%.*}.mp4
                 ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
