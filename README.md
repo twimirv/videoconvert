@@ -1,6 +1,6 @@
 # Plus-desk Video Convert 2020
 
-This script uses FFMPEG to convert all mp4-files in a directory for web use. Custom settings available.
+This script uses FFMPEG to convert all mp4, mov, avi and mxf-files in a directory for web use. Custom settings available.
 
 Poster-images are automatically generated for each converted video file.
 
