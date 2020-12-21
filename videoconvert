@@ -114,7 +114,7 @@ then
         shopt -s nullglob
         for i in *.mp4 *.mov *.mxf *.avi *.gif
             do
-                ffmpeg -y -i $i -vf scale=-1:1080 -c:v libx264 $obitrate -vf format=yuv420p ${ospeed}ffmpeg/1080p/${i%.*}.mp4
+                ffmpeg -y -i $i -vf scale=-1:1080 -c:v libx264 $obitrate -vf format=yuv420p -movflags +faststart ${ospeed}ffmpeg/1080p/${i%.*}.mp4
                 ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
         done
     fi
@@ -124,7 +124,7 @@ then
         shopt -s nullglob
         for i in *.mp4 *.mov *.mxf *.avi *.gif
             do
-                ffmpeg -y -i $i -vf scale=-1:720 -c:v libx264 ${ospeed}ffmpeg/720p/${i%.*}.mp4
+                ffmpeg -y -i $i -vf scale=-1:720 -c:v libx264 -movflags +faststart ${ospeed}ffmpeg/720p/${i%.*}.mp4
                 ffmpeg -y -i $i -ss 00:00:00.001 -vframes 1 ffmpeg/1080p/${i}.poster.jpg
         done
     fi
